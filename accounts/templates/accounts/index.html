@@ -59,9 +59,9 @@
           <li><a class="nav-link scrollto" href="{% url 'main_home' %}">Collaborate</a></li>            
           <li class="dropdown"><a href="#"><span>Features</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="./watchlater.html">Watch Later</a></li>
-              <li><a href="./liked.html">Liked Videos</a></li>
-              <li><a href="./notes.html">Notes</a></li>
+              <li><a href="{% url 'watch_later_videos' %}">Watch Later</a></li>
+              <li><a href="{% url 'liked_videos' %}">Liked Videos</a></li>
+              <li><a href="{% url 'notes' %}">Notes</a></li>
             </ul>
             </li> 
           <li class="dropdown"><a href="#">👋 <i class="bi bi-chevron-down"></i></a>

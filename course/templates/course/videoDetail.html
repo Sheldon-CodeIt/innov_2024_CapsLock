@@ -1,35 +1,23 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
     <title>Inner Page - Bootslander Bootstrap Template</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
-
-    <!-- Favicons -->
     <link href="assets/img/favicon.png" rel="icon">
     <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
-   <!-- Vendor CSS Files -->
-   <link href="{% static 'vendor/aos/aos.css' %}" rel="stylesheet">
-   <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-   <link href="{% static 'vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
-   <link href="{% static 'vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
-   <link href="{% static 'vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
-   <link href="{% static 'vendor/remixicon/remixicon.css' %}" rel="stylesheet">
-   <link href="{% static 'vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
- 
-   <!-- Template Main CSS File -->
-   <link href="{% static 'css/style.css' %}" rel="stylesheet">
-
-    <!-- Video/ Notes bootstrap css link-->
+    <link href="{% static 'vendor/aos/aos.css' %}" rel="stylesheet">
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+    <link href="{% static 'vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendor/remixicon/remixicon.css' %}" rel="stylesheet">
+    <link href="{% static 'vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <style>
@@ -160,9 +148,7 @@
         border: solid black 1px;
       }
     </style>
-
 </head>
-
 <body>
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top d-flex align-items-center header-transparent">
@@ -189,14 +175,14 @@
           <li><a class="nav-link scrollto" href="{% url 'main_home' %}">Collaborate</a></li>            
           <li class="dropdown"><a href="#"><span>Features</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="./watchlater.html">Watch Later</a></li>
-              <li><a href="./liked.html">Liked Videos</a></li>
-              <li><a href="./notes.html">Notes</a></li>
+              <li><a href="{% url 'watch_later_videos' %}">Watch Later</a></li>
+              <li><a href="{% url 'liked_videos' %}">Liked Videos</a></li>
+              <li><a href="{% url 'notes' %}">Notes</a></li>
             </ul>
             </li> 
           <li class="dropdown"><a href="#">👋 <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="#">Profile</a></li>
+              <li><a href="#">hjfhkjfhkjd</a></li>
               <li><a href="#">Settings</a></li>
               {% if request.user.is_authenticated %}
                 <li><a href="{% url 'logout' %}">Sign Out</a></li>
@@ -217,11 +203,11 @@
     </div>
   </header><!-- End Header -->
 
+    <!-- Main content -->
     <main id="main">
-
         <div class="container-fluid">
             <div class="row">
-                
+                <!-- Video section -->
                 <div id="video-section" class="col-md-8">
                     <h4 class="title"><a href="">(React-Beginner) Module 1: Getting Started</a></h4>
                     <!-- Replace 'YOUR_YOUTUBE_VIDEO_ID' with the actual YouTube video ID -->
@@ -260,6 +246,7 @@
                     
                 </div>
 
+                <!-- Notes section -->
                 <div id="notes-section" class="col-md-4" >
                     <h1 style="text-align: center; border-radius:10px; ">Notes</h1>
                     <textarea style="height: 300px;" class="form-control" id="userNotes" placeholder="Write your notes here..."></textarea>
@@ -274,21 +261,26 @@
                     </div>
                     
                 </div>
-                
             </div>
-            
-           
-            
-            
         </div>
 
-   
-  
-        
-
+        <!-- Chatbot section -->
+        <div class="card">
+            <div id="header">
+                <h1>AdaBot</h1>
+            </div>
+            <div id="message-section">
+                <div class="message" id="bot"><span id="bot-response">Hello.. I'm listening! Go on..</span></div>
+            </div>
+            <div id="input-section">
+                <input id="input" type="text" placeholder="Type a message" autocomplete="off" autofocus="autofocus"/>
+                <button class="send" onclick="sendMessage()">
+                    <div class="circle"><i class="zmdi zmdi-mail-send"></i></div>
+                </button>
+            </div>
+        </div>
     </main><!-- End #main -->
-
-    <!-- ======= Footer ======= -->
+  <!-- ======= Footer ======= -->
   <footer id="footer">
     <div class="footer-top">
       <div class="container">
@@ -354,71 +346,91 @@
 
       </div>
     </div>
-  </footer><!-- End Footer -->
+  </footer>
+  <!-- End Footer -->
 
-    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-    <div id="preloader"></div>
-
-  <!-- Vendor JS Files -->
-  <script src="{% static 'vendor/purecounter/purecounter_vanilla.js' %}"></script>
-  <script src="{% static 'vendor/aos/aos.js' %}"></script>
-  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-  <script src="{% static 'vendor/glightbox/js/glightbox.min.js' %}"></script>
-  <script src="{% static 'vendor/swiper/swiper-bundle.min.js' %}"></script>
-  <script src="{% static 'vendor/php-email-form/validate.js' %}"></script>
-
-
-    <!-- Template Main JS File -->
+    <!-- JavaScript libraries -->
+    <script src="{% static 'vendor/purecounter/purecounter_vanilla.js' %}"></script>
+    <script src="{% static 'vendor/aos/aos.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'vendor/glightbox/js/glightbox.min.js' %}"></script>
+    <script src="{% static 'vendor/swiper/swiper-bundle.min.js' %}"></script>
+    <script src="{% static 'vendor/php-email-form/validate.js' %}"></script>
     <script src="{% static 'js/main.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.min.js"></script>
+
+
     <script>
-      function togglePopup() {
-          var popup = document.getElementById('popup-container');
-          popup.style.display = (popup.style.display === 'none' || popup.style.display === '') ? 'flex' : 'none';
-      }
 
-      function sendMessage() {
-          var userInputField = document.getElementById('user-input-field');
-          var userMessage = userInputField.value.trim();
-
-          if (userMessage !== '') {
-              var chatContent = document.getElementById('chat-content');
-              chatContent.innerHTML += '<div id="user-message">You: ' + userMessage + '</div>';
-
-              userInputField.value = '';
-              chatContent.scrollTop = chatContent.scrollHeight; // Scroll to the bottom
-          }
-      }
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-      crossorigin="anonymous"></script>
-
-    <!-- Additional JS for button click events -->
-    <script>
-        document.getElementById('like').addEventListener('click', function () {
-            this.classList.toggle('btn-success');
+        function sendMessage() {
+        const inputField = document.getElementById("input");
+        let input = inputField.value.trim();
+        input != "" && output(input);
+        inputField.value = "";
+        }
+    
+        document.addEventListener("DOMContentLoaded", () => {
+        const inputField = document.getElementById("input");
+        inputField.addEventListener("keydown", function (e) {
+            if (e.code === "Enter") {
+            let input = inputField.value.trim();
+            input != "" && output(input);
+            inputField.value = "";
+            addChat(input);
+            }
         });
-
-        document.getElementById('dislike').addEventListener('click', function () {
-            this.classList.toggle('btn-danger');
         });
-
-        document.getElementById('saveToPlaylist').addEventListener('click', function () {
-            this.classList.toggle('btn-primary');
-        });
-
-        document.getElementById('clear').addEventListener('click', function () {
-            document.getElementById('userNotes').value = ''; // Clear the textarea content
-            this.classList.toggle('btn-secondary');
-        });
-
-        document.getElementById('save').addEventListener('click', function () {
-            this.classList.toggle('btn-primary');
-        });
-
+    
+        function output(input) {
+            const md = new markdownit({ html: true });
         
+            $.ajax({
+                type: 'POST',
+                url: '/ask_question/',
+                data: {
+                    'text': input,
+                    csrfmiddlewaretoken: '{{ csrf_token }}',
+                },
+                success: function(res) {
+                    if (res && res.data && res.data.text) {
+                        var response = md.render(res.data.text);
+                        addOutputChat(input, response);
+                    } else {
+                        console.error("Invalid response format");
+                    }
+                },
+                error: function() {
+                    console.log("There was an error!");
+                }
+            });
+        }
+    
+    
+        function addChat(input) {
+        const mainDiv = document.getElementById("message-section");
+        let userDiv = document.createElement("div");
+        userDiv.id = "user";
+        userDiv.classList.add("message");
+        userDiv.innerHTML = `<span id="user-response">${input}</span>`;
+        mainDiv.appendChild(userDiv);
+        var scroll = document.getElementById("message-section");
+        scroll.scrollTop = scroll.scrollHeight;
+        console.log("SOBO")
+    
+        }
+    
+        function addOutputChat(input, product) {
+        const mainDiv = document.getElementById("message-section");
+        let botDiv = document.createElement("div");
+        botDiv.id = "bot";
+        botDiv.classList.add("message");
+        botDiv.innerHTML = `<span id="bot-response">${product}</span>`;
+        mainDiv.appendChild(botDiv);
+        var scroll = document.getElementById("message-section");
+        scroll.scrollTop = scroll.scrollHeight;
+        }
+    
     </script>
-
 </body>
-
 </html>
