@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Add your custom styles here */
+        .global-container {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card {
+            width: 400px;
+        }
+
+        /* Additional style for the profile data */
+        .profile-data {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="global-container">
+        <div class="card login-form">
+            <div class="card-body">
+                <h3 class="card-title text-center">Welcome, {{ request.user.username }}</h3>
+                <form action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary btn-block">Logout</button>
+                </form>
+                <!-- Button to show profile data -->
+                <button type="button" class="btn btn-secondary btn-block mt-3" id="show-profile-btn">Show Profile</button>
+                <!-- Profile data -->
+                <div class="profile-data" style="display: none;">
+                    <p><strong>Mobile Number:</strong> {{ user_profile.mobile_number }}</p>
+                    <p><strong>Field of Interest:</strong> {{ user_profile.field_of_interest }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("show-profile-btn").addEventListener("click", function() {
+            var profileData = document.querySelector(".profile-data");
+            if (profileData.style.display === "none") {
+                profileData.style.display = "block";
+            } else {
+                profileData.style.display = "none";
+            }
+        });
+    </script>
+    
+</body>
+</html>

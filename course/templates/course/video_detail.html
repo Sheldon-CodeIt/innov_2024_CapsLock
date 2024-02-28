@@ -1,0 +1,524 @@
+{% comment %} <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ course.course_title }} - {{ video.vid_title }}</title>
+    <style>
+        /* CSS to reduce the size of the video window */
+        iframe {
+            width: 200%; /* Increase the width */
+            max-width: 800px; /* Adjust the max-width as needed */
+            height: 400px; /* Maintain aspect ratio */
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ course.course_title }} - {{ video.vid_title }}</h1>
+    <p>Description: {{ video.vid_description }}</p>
+    <p>Duration: {{ video.vid_duration }}</p>
+    <!-- Add more details as needed -->
+
+    <!-- Display the video using the provided iframe code -->
+    {{ video.vid_embedded_url|safe }}
+
+    <!-- Like/Unlike button -->
+    <form id="likeForm" data-action="{% url 'add_to_liked_videos' course_id=course.course_id vid_id=video.vid_id %}" method="post">
+        {% csrf_token %}
+        <input id="likeButton" type="submit" value="{% if is_added_to_liked_videos %}Remove from Liked Videos{% else %}Add to Liked Videos{% endif %}">
+    </form>
+    
+    <!-- Add to Watch Later button -->
+    <form id="watchLaterForm" data-action="{% url 'add_to_watch_later' course_id=course.course_id vid_id=video.vid_id %}" method="post">
+        {% csrf_token %}
+        {% if is_added_to_watch_later %}
+            <input type="submit" value="Remove from Watch Later">
+        {% else %}
+            <input type="submit" value="Add to Watch Later">
+        {% endif %}
+    </form>
+
+    <!-- Notes Section -->
+    <h2>Notes</h2>
+    <form id="notesForm" data-action="{% url 'save_video_notes' course_id=course.course_id vid_id=video.vid_id %}" method="post">
+        {% csrf_token %}
+        <textarea id="notesTextarea" name="notes" rows="4" cols="50">{{ video.notes }}</textarea><br>
+        <input type="submit" value="Save Notes">
+    </form>
+
+    <script>
+        // JavaScript to handle form submission asynchronously
+
+        // Function to handle form submission
+        function handleSubmit(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            const form = event.target; // Get the form element
+            const formData = new FormData(form); // Create FormData object
+
+            // Fetch API to submit form data asynchronously
+            fetch(form.getAttribute('data-action'), {
+                method: form.method,
+                body: formData,
+                headers: {
+                    'X-CSRFToken': '{{ csrf_token }}' // Add CSRF token header
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Handle response data as needed
+                console.log(data);
+                alert(data.message); // Show success message (replace with your own logic)
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+                alert('Notes saved'); // Show error message (replace with your own logic)
+            });
+            
+        }
+
+        // Add event listeners to forms
+        document.getElementById('likeForm').addEventListener('submit', handleSubmit);
+        document.getElementById('watchLaterForm').addEventListener('submit', handleSubmit);
+        document.getElementById('notesForm').addEventListener('submit', handleSubmit);
+    </script>
+</body>
+</html> {% endcomment %}
+
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Inner Page - Bootslander Bootstrap Template</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon">
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+   <!-- Vendor CSS Files -->
+   <link href="{% static 'vendor/aos/aos.css' %}" rel="stylesheet">
+   <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+   <link href="{% static 'vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+   <link href="{% static 'vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+   <link href="{% static 'vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+   <link href="{% static 'vendor/remixicon/remixicon.css' %}" rel="stylesheet">
+   <link href="{% static 'vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+ 
+   <!-- Template Main CSS File -->
+   <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+    <!-- Video/ Notes bootstrap css link-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <style>
+        body {
+            background-color: rgba(1, 4, 136, 0.9);
+        }
+        #main {
+            padding-top: 5%;
+        }
+
+        #video-section,
+        #notes-section {
+            padding: 20px;
+
+        }
+
+        #video-section {
+            background-color: #f5f5ff;
+            ;
+        }
+
+        #notes-section {
+            background-color: #f5f5ff;
+            ;
+        }
+
+        iframe {
+            width: 100%;
+            height: 360px;
+            /* Adjust the height as needed */
+        }
+
+        .action-buttons {
+            display: flex;
+
+            margin-bottom: 10px;
+        }
+
+        .action-buttons button {
+            margin-right: 10px;
+        }
+
+        .btn-icon {
+            display: flex;
+            align-items: center;
+        }
+
+        .btn-icon i {
+            margin-right: 5px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 150px;
+        }
+      }
+      #chat-button {
+        position: fixed;
+        bottom: 50px;
+        left: 50px;
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+      
+      #popup-container {
+        display: none;
+        position: fixed;
+        bottom: 10px;
+        left: 10px;
+        width: 20%;
+        height: 50%;
+        background-color: #f1f1f1;
+        border: solid #133414 2px;
+        border-radius: 10px;
+      }
+      
+      #popup-content {
+        padding: 20px;
+        height: 100%;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+      }
+      
+      #close-button {
+        align-self: flex-end;
+        background-color: #ff0000;
+        color: white;
+        padding-left: 7px;
+        padding-right: 7px;
+        cursor: pointer;
+        border-radius: 5px;
+        border: solid black 1px;
+      }
+      
+      #chat-content {
+        flex-grow: 1;
+        overflow-y: auto;
+      }
+      
+      #user-message, #bot-message {
+        margin: 5px 0;
+        font-family: Arial, sans-serif;
+            font-size: 15px;
+            font-weight: bold;
+      }
+      
+      #user-input {
+        display: flex;
+        margin-top: 10px;
+      }
+      
+      #user-input-field {
+        flex-grow: 1;
+        padding: 5px;
+      }
+      button {
+        margin-left: 10px;
+        padding: 5px;
+        cursor: pointer;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        border: solid black 1px;
+      }
+    </style>
+
+    <!-- =======================================================
+  * Template Name: Bootslander
+  * Updated: Jan 29 2024 with Bootstrap v5.3.2
+  * Template URL: https://bootstrapmade.com/bootslander-free-bootstrap-landing-page-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+  <!-- ======= Header ======= -->
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top d-flex align-items-center header-transparent">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <div class="logo">
+        <h1><a href="{% url 'main_home' %}"><span>Adaptify</span></a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      </div>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li>
+            <form class="search-form">
+                <input type="text" placeholder="  Search" style="border-radius: 12px; font-family: Poppins, sans-serif;">
+                <button type="submit" style="background-color:rgba(2, 5, 161, 0.91);color:white;"><i class="bi bi-search" ></i></button>
+            </form>
+          </li>
+          <li><a class="nav-link scrollto active" href="{% url 'main_home' %}">Home</a></li>
+          <li><a class="nav-link scrollto" href="#about">About</a></li>
+          <li><a class="nav-link scrollto" href="{% url 'performance' %}">Performance</a></li>
+          <li><a class="nav-link scrollto" href="{% url 'course_list' %}">Courses</a></li>
+          <li><a class="nav-link scrollto" href="{% url 'main_home' %}">Collaborate</a></li>            
+          <li class="dropdown"><a href="#"><span>Features</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="./watchlater.html">Watch Later</a></li>
+              <li><a href="./liked.html">Liked Videos</a></li>
+              <li><a href="./notes.html">Notes</a></li>
+            </ul>
+            </li> 
+          <li class="dropdown"><a href="#">👋 <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="#">Profile</a></li>
+              <li><a href="#">Settings</a></li>
+              {% if request.user.is_authenticated %}
+                <li><a href="{% url 'logout' %}">Sign Out</a></li>
+              {% else %}
+                <li><a href="{% url 'login_attempt' %}">Sign in</a></li>
+              {% endif %}
+            </ul>
+          </li>
+
+              
+          
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav>
+      
+    <!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+    <main id="main">
+
+        <div class="container-fluid">
+            <div class="row">
+                
+                <div id="video-section" class="col-md-8">
+                    <h4 class="title"><a href="">(React-Beginner) Module 1: Getting Started</a></h4>
+                    <!-- Replace 'YOUR_YOUTUBE_VIDEO_ID' with the actual YouTube video ID -->
+                    <iframe width="800" height="450" src="https://www.youtube.com/embed/YOUR_YOUTUBE_VIDEO_ID" frameborder="0" allowfullscreen style="height: 500px; border-radius:10px; "></iframe>
+                    <br>
+                    <div class="action-buttons" style="margin-top: 10px;">
+                      
+                        <button class="btn btn-primary btn-icon" id="saveToPlaylist" style="margin-left: 10px; margin-right:01%">
+                            <i class="fas fa-clock"></i> Watch Later
+                        </button>
+                        <div id="chat-button" onclick="togglePopup()" style="background-color: #ffd06a; margin-left:0px; margin-right:49%; border:solid black 2px; border-radius:5px;padding-left:5px; height:30px; margin-top:5px;"> Chat 💬</div>
+  
+    <div id="popup-container">
+      <div id="popup-content">
+        <div id="close-button" onclick="togglePopup()">X</div>
+        <hr>
+        <div id="chat-content">
+          <div id="user-message">You: Hi there!</div>
+          <div id="bot-message">Educator: Hello! How can I help you today?</div>
+          <!-- Add more chat messages as needed -->
+        </div>
+        <div id="user-input">
+          <input type="text" id="user-input-field" placeholder="chat with us...">
+          <button onclick="sendMessage()">Ask</button>
+        </div>
+      </div>
+    </div>
+                        <button class="btn btn-success btn-icon" id="like">
+                            <i class="fas fa-thumbs-up"></i> Like <span id="like-count"></span>
+                        </button>
+                        <button class="btn btn-danger btn-icon" id="dislike" style="margin-left:40px">
+                            <i class="fas fa-thumbs-down" ></i> Dislike <span id="dislike-count"></span>
+                        </button>
+                        
+                    </div>
+                    
+                </div>
+
+                <div id="notes-section" class="col-md-4" >
+                    <h1 style="text-align: center; border-radius:10px; ">Notes</h1>
+                    <textarea style="height: 300px;" class="form-control" id="userNotes" placeholder="Write your notes here..."></textarea>
+                    <br>
+                    <div class="action-buttons">
+                        <button style="display: block;" class="btn btn-primary btn-icon" id="save">
+                            <i class="fas fa-layer-group"></i> Save
+                        </button>
+                        <button style="display: inline;" class="btn btn-secondary btn-icon" id="clear">
+                            <i class="fas fa-trash-alt"></i> Clear
+                        </button>
+                    </div>
+                    
+                </div>
+                
+            </div>
+            
+           
+            
+            
+        </div>
+
+   
+  
+        
+
+    </main><!-- End #main -->
+
+    <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-6 col-md-6">
+            <div class="footer-info">
+              <h3>Adaptify</h3>
+              <p class="pb-3"><em>Where Every Learning Journey Adapts to You.</em></p>
+              <p>
+                A-108 Bandra - West <br>
+                Mumbai 400050, Mh<br><br>
+                <strong>Phone:</strong> +91 99X XXXXX XX<br>
+                <strong>Email:</strong> adaptify@Gmail.com<br>
+              </p>
+              <div class="social-links mt-3">
+                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Our Services</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Performance</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Courses</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Quiz</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Features</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Collaborate</a></li>
+            </ul>
+          </div>
+
+          
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="copyright">
+        Made By <strong><span>CapsLock🤍</span></strong> All Rights Reserved
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/bootslander-free-bootstrap-landing-page-template/ -->
+
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <div id="preloader"></div>
+
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="assets/js/main.js"></script>
+    <script>
+      function togglePopup() {
+          var popup = document.getElementById('popup-container');
+          popup.style.display = (popup.style.display === 'none' || popup.style.display === '') ? 'flex' : 'none';
+      }
+
+      function sendMessage() {
+          var userInputField = document.getElementById('user-input-field');
+          var userMessage = userInputField.value.trim();
+
+          if (userMessage !== '') {
+              var chatContent = document.getElementById('chat-content');
+              chatContent.innerHTML += '<div id="user-message">You: ' + userMessage + '</div>';
+
+              userInputField.value = '';
+              chatContent.scrollTop = chatContent.scrollHeight; // Scroll to the bottom
+          }
+      }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"></script>
+
+    <!-- Additional JS for button click events -->
+    <script>
+        document.getElementById('like').addEventListener('click', function () {
+            this.classList.toggle('btn-success');
+        });
+
+        document.getElementById('dislike').addEventListener('click', function () {
+            this.classList.toggle('btn-danger');
+        });
+
+        document.getElementById('saveToPlaylist').addEventListener('click', function () {
+            this.classList.toggle('btn-primary');
+        });
+
+        document.getElementById('clear').addEventListener('click', function () {
+            document.getElementById('userNotes').value = ''; // Clear the textarea content
+            this.classList.toggle('btn-secondary');
+        });
+
+        document.getElementById('save').addEventListener('click', function () {
+            this.classList.toggle('btn-primary');
+        });
+
+        
+    </script>
+
+</body>
+
+</html>

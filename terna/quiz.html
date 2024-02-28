@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Inner Page - Bootslander Bootstrap Template</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Bootslander
+  * Updated: Jan 29 2024 with Bootstrap v5.3.2
+  * Template URL: https://bootstrapmade.com/bootslander-free-bootstrap-landing-page-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+<style>
+    body {
+        background-color: rgba(1, 4, 136, 0.9);
+    }
+    .container1 {
+        border: solid rgb(220, 220, 220) 1px;
+        border-radius: 10px;
+        background-color: #f5f5ff;
+        
+    }
+    .rating {
+        display: inline-block;
+      }
+      
+      .rating input {
+        display: none;
+      }
+      
+      .rating label {
+        float: right;
+        cursor: pointer;
+        color: #ddd;
+      }
+      
+      .rating label:before {
+        content: '\2605';
+        font-size: 30px;
+      }
+      
+      .rating input:checked ~ label {
+        color: #ffdd00;
+      }
+      
+</style>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top d-flex align-items-center header-transparent">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <div class="logo">
+        <h1><a href="index.html"><span>Adaptify</span></a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      </div>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li>
+            <form class="search-form">
+                <input type="text" placeholder="  Search" style="border-radius: 12px; font-family: Poppins, sans-serif;">
+                <button type="submit" style="background-color:rgba(2, 5, 161, 0.91);color:white;"><i class="bi bi-search" ></i></button>
+            </form>
+          </li>
+          <li><a class="nav-link scrollto active" href="./index.html">Home</a></li>
+          <li><a class="nav-link scrollto" href="#about">About</a></li>
+          <li><a class="nav-link scrollto" href="./performance.html">Performance</a></li>
+          <li><a class="nav-link scrollto" href="./index.html">Courses</a></li>
+          <li><a class="nav-link scrollto" href="./create.html">Collaborate</a></li>            
+          <li class="dropdown"><a href="#"><span>Features</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="./watchlater.html">Watch Later</a></li>
+              <li><a href="./liked.html">Liked Videos</a></li>
+              <li><a href="./notes.html">Notes</a></li>
+            </ul></li>
+          <li class="dropdown"><a href="#">👋 <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="#">Profile</a></li>
+              <li><a href="#">Settings</a></li>
+              <li><a href="#">Sign Out</a></li>
+            </ul></li>
+              
+          
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <main id="main">
+
+    
+    <!-- ======= Breadcrumbs Section ======= -->
+    <section class="breadcrumbs">
+      <div class="container">
+
+        <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+        <div class="container-fluid">
+            
+          
+            <div class="container1">
+                <div class="row">
+                
+            <div class="col-xl-12 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5" data-aos="fade-left">
+            
+                <h3>Quiz 1 - React.Js - Beginner</h3>
+                <p>10 marks MCQs to test your knowledge of React fundamentals. Take the Quiz and check the analytical breakdown of your performances. </p>
+                <hr>
+                <div class="container">
+    
+                    <form id="quizForm">
+                      <!-- Question 1 -->
+                      <div class="form-group">
+                        <label for="q1"><h2>1. What function is used to render React elements into the DOM?</h2></label><br>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="q1" value="a" required>
+                          <label class="form-check-label" for="q1a"><b>a) ReactDOM.render()</b></label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="q1" value="b">
+                          <label class="form-check-label" for="q1b"><b>b) React.render()</b></label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="q1" value="c">
+                          <label class="form-check-label" for="q1c"><b>c) ReactDOM.renderComponent()</b></label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="q1" value="d">
+                          <label class="form-check-label" for="q1d"><b>d) React.renderComponent()</b></label>
+                        </div>
+                      </div>
+                      <!-- Question 2 --> <br>
+                      <div class="form-group">
+                        <label for="q2"><h2>2. What creates an instance of a component in React?</h2></label><br>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="q2" value="a" required>
+                          <label class="form-check-label" for="q2a"><b>a) render()</b></label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="q2" value="b">
+                          <label class="form-check-label" for="q2b"><b>b) createComponent()</b></label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="q2" value="c">
+                          <label class="form-check-label" for="q2c"><b>c) getComponent()</b></label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="q2" value="d">
+                          <label class="form-check-label" for="q2d"><b>d) createElement()</b></label>
+                        </div>
+                      </div>
+                      <!-- Add more questions here following the same format -->
+                      <!-- Question 3 --><br>
+<div class="form-group">
+    <label for="q3"><h2>3. What is JSX?</h2></label><br>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="q3" value="a" required>
+        <label class="form-check-label" for="q3a"><b>a) JavaScript XML</b></label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="q3" value="b">
+        <label class="form-check-label" for="q3b"><b>b) JSON Syntax Extension</b></label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="q3" value="c">
+        <label class="form-check-label" for="q3c"><b>c) JavaScript Exclusion</b></label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="q3" value="d">
+        <label class="form-check-label" for="q3d"><b>d) JavaScript Extension</b></label>
+    </div>
+</div>
+
+<!-- Question 4 --><br>
+<div class="form-group">
+    <label for="q4"><h2>4. What is state in React?</h2></label><br>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="q4" value="a" required>
+        <label class="form-check-label" for="q4a"><b>a) State refers to the visual representation of a component.</b></label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="q4" value="b">
+        <label class="form-check-label" for="q4b"><b>b) State is a JavaScript object that stores a component's dynamic data.</b></label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="q4" value="c">
+        <label class="form-check-label" for="q4c"><b>c) State is used for static data in a component.</b></label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="q4" value="d">
+        <label class="form-check-label" for="q4d"><b>d) State is a method to control component styles.</b></label>
+    </div>
+</div>
+
+<!-- Question 5 --><br>
+<div class="form-group">
+    <label for="q5"><h2>5. What lifecycle method is called after a component is rendered for the first time?</h2></label><br>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="q5" value="a" required>
+        <label class="form-check-label" for="q5a"><b>a) componentDidMount()</b></label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="q5" value="b">
+        <label class="form-check-label" for="q5b"><b>b) componentDidUpdate()</b></label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="q5" value="c">
+        <label class="form-check-label" for="q5c"><b>c) componentWillMount()</b></label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="q5" value="d">
+        <label class="form-check-label" for="q5d"><b>d) componentWillUnmount()</b></label>
+    </div>
+</div>
+
+<!-- Question 6 --><br>
+<div class="form-group">
+    <label for="q6"><h2>6. Which method is used to change the state in React?</h2></label><br>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="q6" value="a" required>
+        <label class="form-check-label" for="q6a"><b>a) setState()</b></label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="q6" value="b">
+        <label class="form-check-label" for="q6b"><b>b) changeState()</b></label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="q6" value="c">
+        <label class="form-check-label" for="q6c"><b>c) updateState()</b></label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="q6" value="d">
+        <label class="form-check-label" for="q6d"><b>d) alterState()</b></label>
+    </div>
+</div>
+
+<!-- Question 7 --><br>
+<div class="form-group">
+    <label for="q7"><h2>7. What is a React component?</h2></label><br>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="q7" value="a" required>
+        <label class="form-check-label" for="q7a"><b>a) A JavaScript function that returns React elements</b></label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="q7" value="b">
+        <label class="form-check-label" for="q7b"><b>b) A static HTML element</b></label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="q7" value="c">
+        <label class="form-check-label" for="q7c"><b>c) A function that renders CSS styles</b></label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="q7" value="d">
+        <label class="form-check-label" for="q7d"><b>d) A static image file</b></label>
+    </div>
+</div>
+
+<!-- Question 8 --><br>
+<div class="form-group">
+    <label for="q8"><h2>8. What is the purpose of the render method in a React component?</h2></label><br>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="q8" value="a" required>
+        <label class="form-check-label" for="q8a"><b>a) To define the initial state of the component</b></label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="q8" value="b">
+        <label class="form-check-label" for="q8b"><b>b) To update the state of the component</b></label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="q8" value="c">
+        <label class="form-check-label" for="q8c"><b>c) To render JSX and return React elements</b></label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="q8" value="d">
+        <label class="form-check-label" for="q8d"><b>d) To handle user input events</b></label>
+    </div>
+</div>
+<!-- Question 9 --><br>
+<div class="form-group">
+    <label for="q9"><h2>9. What is the purpose of props in React?</h2></label><br>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="q9" value="a" required>
+        <label class="form-check-label" for="q9a"><b>a) Props are used to store component's internal data</b></label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="q9" value="b">
+        <label class="form-check-label" for="q9b"><b>b) Props are used to pass data from parent to child components</b></label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="q9" value="c">
+        <label class="form-check-label" for="q9c"><b>c) Props are used to style components</b></label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="q9" value="d">
+        <label class="form-check-label" for="q9d"><b>d) Props are used to define component structure</b></label>
+    </div>
+</div>
+
+<!-- Question 10 --><br>
+<div class="form-group">
+    <label for="q10"><h2>10. What is the purpose of React's virtual DOM?</h2></label><br>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="q10" value="a" required>
+        <label class="form-check-label" for="q10a"><b>a) Virtual DOM improves the performance of React applications by minimizing DOM manipulation</b></label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="q10" value="b">
+        <label class="form-check-label" for="q10b"><b>b) Virtual DOM allows React to render components directly to the browser without the need for a DOM</b></label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="q10" value="c">
+        <label class="form-check-label" for="q10c"><b>c) Virtual DOM is used to create animations in React components</b></label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="q10" value="d">
+        <label class="form-check-label" for="q10d"><b>d) Virtual DOM simplifies React component structure</b></label>
+    </div>
+</div>
+
+<br><br>
+<!-- Add more questions here following the same format -->
+
+                      <button type="submit" class="btn btn-primary">Submit Quiz</button>
+                    </form>
+                  </div>
+                  
+                  <!-- Bootstrap JS -->
+                  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+                
+            </div>
+          </div>
+        </div>
+  
+        </div>
+      </section><!-- End About Section -->
+
+      </div>
+    </section><!-- End Breadcrumbs Section -->
+
+    
+
+  </main><!-- End #main -->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-6 col-md-6">
+            <div class="footer-info">
+              <h3>Adaptify</h3>
+              <p class="pb-3"><em>Where Every Learning Journey Adapts to You.</em></p>
+              <p>
+                A-108 Bandra - West <br>
+                Mumbai 400050, Mh<br><br>
+                <strong>Phone:</strong> +91 99X XXXXX XX<br>
+                <strong>Email:</strong> adaptify@Gmail.com<br>
+              </p>
+              <div class="social-links mt-3">
+                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Our Services</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Performance</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Courses</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Quiz</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Features</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Collaborate</a></li>
+            </ul>
+          </div>
+
+          
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="copyright">
+        Made By <strong><span>CapsLock🤍</span></strong> All Rights Reserved
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/bootslander-free-bootstrap-landing-page-template/ -->
+
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

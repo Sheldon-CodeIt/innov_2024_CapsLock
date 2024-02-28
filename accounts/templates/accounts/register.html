@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <title>Signup</title>
+      <link rel="stylesheet" href="{% static 'css/login.css' %}">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+   <body>
+      <div class="wrapper">
+         <div class="title-text">
+            <div class="title login">
+               Signup Form
+            </div>
+            <div class="title signup">
+               Signup Form
+            </div>
+         </div>
+         <div class="form-container">
+            {% comment %} <div class="slide-controls">
+               <input type="radio" name="slide" id="login" checked>
+               <input type="radio" name="slide" id="signup">
+               <label for="login" class="slide login">Login</label>
+               <label for="signup" class="slide signup">Signup</label>
+               <div class="slider-tab"></div>   
+            </div> {% endcomment %}
+            <div class="form-inner">
+               <form method="POST" action="" class="signup">
+                    {% csrf_token %}
+                    <div class="field">
+                        <input type="text" name="username" placeholder="Username" required>
+                    </div>
+                    <div class="field">
+                        <input type="password" name="password" placeholder="Set Password" required>
+                    </div>          
+                    <div class="field">
+                        <input type="tel" name="mobile_number" placeholder="Contact Number" required>
+                    </div>
+                    <div class="field">
+                        <input type="email" name="email" placeholder="Email Address" required>
+                    </div>
+                    <div class="field">
+                        <select id="areaOfInterest"  name="field_of_interest" required>
+                            <option value="" disabled selected>Select Area of Interest</option>
+                            <option value="Engineering">Engineering</option>
+                            <option value="Medical">Medical</option>
+                            <option value="Law">Law</option>
+                            <option value="English Literature">English Literature</option>
+                            <option value="Finance">Finance</option>
+                        </select>
+                    </div>
+                    <div class="field btn">
+                        <div class="btn-layer"></div>
+                        <input type="submit" value="Signup">
+                    </div>
+                    <div class="signup-link">
+                        Already a member? <a href="{% url 'login_attempt' %}">Sign in</a>
+                     </div>
+            </form>
+            
+            </div>
+         </div>
+      </div>
+   </body>
+</html>

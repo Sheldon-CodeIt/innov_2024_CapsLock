@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Videos</title>
+    <style>
+        /* CSS to reduce the size of the video window */
+        iframe {
+            width: 100%; /* Set the width to 100% */
+            max-width: 400px; /* Set the maximum width */
+            height: auto; /* Auto adjust height to maintain aspect ratio */
+        }
+    </style>
+</head>
+<body>
+    <h1>All Videos</h1>
+    <ul>
+    {% for video in videos %}
+        <li>
+            <h2>{{ video.vid_title }}</h2>
+            <p>Description: {{ video.vid_description }}</p>
+            <p>Duration: {{ video.vid_duration }}</p>
+            <!-- Display the video using the provided iframe code -->
+            {{ video.vid_embedded_url|safe }}
+            <!-- Add more details as needed -->
+        </li>
+    {% endfor %}
+    </ul>
+</body>
+</html>

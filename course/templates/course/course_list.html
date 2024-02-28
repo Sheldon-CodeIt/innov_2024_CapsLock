@@ -1,0 +1,390 @@
+{% comment %} <!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Course List</title>
+</head>
+<body>
+    <h1>Course List</h1>
+    <div>
+        {% for course in courses %}
+            <div>
+                <h2>{{ course.course_description }}</h2>
+                <p>Course ID: {{ course.course_id }}</p>
+                <p>Course Level: {{ course.get_course_level_display }}</p>
+                <p>Course Tags: {{ course.course_tags }}</p>
+                <p>Course Outcomes: {{ course.course_outcomes }}</p>
+                {% if course.course_poster %}
+                    <img src="{{ course.course_poster.url }}" alt="Course Poster" width="300" height="200">
+                {% else %}
+                    <p>No poster available</p>
+                {% endif %}
+                <p><a href="{% url 'course_detail' course_id=course.course_id %}">View Course</a></p>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html> {% endcomment %}
+
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Bootslander Bootstrap Template - Index</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="{% static 'img/favicon.png' %}" rel="icon">
+  <link href="{% static 'img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/remixicon/remixicon.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top d-flex align-items-center header-transparent">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <div class="logo">
+        <h1><a href="{% url 'main_home' %}"><span>Adaptify</span></a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      </div>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li>
+            <form class="search-form">
+                <input type="text" placeholder="  Search" style="border-radius: 12px; font-family: Poppins, sans-serif;">
+                <button type="submit" style="background-color:rgba(2, 5, 161, 0.91);color:white;"><i class="bi bi-search" ></i></button>
+            </form>
+          </li>
+          <li><a class="nav-link scrollto active" href="{% url 'main_home' %}">Home</a></li>
+          <li><a class="nav-link scrollto" href="#about">About</a></li>
+          <li><a class="nav-link scrollto" href="{% url 'performance' %}">Performance</a></li>
+          <li><a class="nav-link scrollto" href="{% url 'main_home' %}">Courses</a></li>
+          <li><a class="nav-link scrollto" href="{% url 'main_home' %}">Collaborate</a></li>            
+          <li class="dropdown"><a href="#"><span>Features</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="./watchlater.html">Watch Later</a></li>
+              <li><a href="./liked.html">Liked Videos</a></li>
+              <li><a href="./notes.html">Notes</a></li>
+            </ul></li> 
+          <li class="dropdown"><a href="#">👋 <i class="bi bi-chevron-down"></i></a>
+
+            <ul>
+              <li><a href="#">Profile</a></li>
+              <li><a href="#">Settings</a></li>
+              {% if request.user.is_authenticated %}
+                <li><a href="{% url 'logout' %}">Sign Out</a></li>
+              {% else %}
+                <li><a href="{% url 'login_attempt' %}">Sign in</a></li>
+              {% endif %}
+            </ul>
+          </li>
+
+              
+          
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav>
+      
+    <!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+    <!-- ======= Hero Section ======= -->
+    <section id="hero">
+
+        <div class="container">
+          <div class="row justify-content-between">
+            <div class="col-lg-7 pt-5 pt-lg-0 order-2 order-lg-1 d-flex align-items-center">
+              <div data-aos="zoom-out">
+                <h1>Where Every Learning Journey Adapts to <span> You. </span></h1>
+                <h2>Tailored Content, Personalized Progress Tracking, and Seamless Adaptation to Your Unique Learning Style</h2>
+                <div class="text-center text-lg-start">
+                  <a href="#about" class="btn-get-started scrollto">Get Started</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 order-1 order-lg-2 hero-img" data-aos="zoom-out" data-aos-delay="300">
+              <img src="{% static 'img/hero-img.png' %}" class="img-fluid animated" alt="">
+            </div>
+          </div>
+        </div>
+    
+        <svg class="hero-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28 " preserveAspectRatio="none">
+          <defs>
+            <path id="wave-path" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z">
+          </defs>
+          <g class="wave1">
+            <use xlink:href="#wave-path" x="50" y="3" fill="rgba(255,255,255, .1)">
+          </g>
+          <g class="wave2">
+            <use xlink:href="#wave-path" x="50" y="0" fill="rgba(255,255,255, .2)">
+          </g>
+          <g class="wave3">
+            <use xlink:href="#wave-path" x="50" y="9" fill="#fff">
+          </g>
+        </svg>
+    
+      </section><!-- End Hero -->
+
+
+<!-- ======= Team Section ======= -->
+<section id="team" class="team">
+  <div class="container">
+
+    <div class="section-title" data-aos="fade-up">
+      <h2>FOR YOU</h2>
+      <p>RECOMMENDATIONS</p>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+      <div class="member" data-aos="zoom-in" data-aos-delay="100">
+        <div class="pic"><img src="{% static 'img/react_beginner.png' %}" class="img-fluid" alt=""></div>
+        <div class="member-info">
+          <h4>REACT.JS - BEGINNER</h4>
+          <span>CODE WITH HARRY</span>
+          <div class="rating" style="display: inline-block;">
+            <input type="radio" id="star5" name="rating" value="5" style="display: none;"/><label for="star5" title="5 stars" style="cursor: pointer; width: 30px; height: 30px; margin: 0 2px; font-size: 20px; color: #FFD700;">★</label>
+            <input type="radio" id="star4" name="rating" value="4" style="display: none;"/><label for="star4" title="4 stars" style="cursor: pointer; width: 30px; height: 30px; margin: 0 2px; font-size: 20px; color: #FFD700;">★</label>
+            <input type="radio" id="star3half" name="rating" value="3.5" style="display: none;"/><label for="star3half" title="3.5 stars" style="cursor: pointer; width: 30px; height: 30px; margin: 0 2px; font-size: 20px; color: #FFD700;">★</label>
+            <input type="radio" id="star1" name="rating" value="1" style="display: none;"/><label for="star1" title="1 star" style="cursor: pointer; width: 30px; height: 30px; margin: 0 2px; font-size: 20px; color: #FFD700;">★</label>
+          </div>
+          <div class="social">
+            <a href="{% url 'courseDetail' %}"><i class="bi bi-bar-chart-steps"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    </div>
+
+  </div>
+</section><!-- End Team Section -->
+<!-- ======= Team Section ======= -->
+<section  class="team">
+  <div class="container">
+
+    <div class="section-title" data-aos="fade-up">
+      <h2>AS PER</h2>
+      <p>YOUR INTEREST</p>
+    </div>
+
+    <div class="row" data-aos="fade-left">
+
+      <div class="col-lg-3 col-md-6">
+        <div class="member" data-aos="zoom-in" data-aos-delay="100">
+          <div class="pic"><img src="{% static 'img/react_expert.jpg' %}" class="img-fluid" alt=""></div>
+          <div class="member-info">
+            <h4>REACT.JS - EXPERT</h4>
+            <span>ANGELA YU</span>
+            <div class="rating" style="display: inline-block;">
+              <input type="radio" id="star5" name="rating" value="5" style="display: none;"/><label for="star5" title="5 stars" style="cursor: pointer; width: 30px; height: 30px; margin: 0 2px; font-size: 20px; color: #FFD700;">★</label>
+              <input type="radio" id="star4" name="rating" value="4" style="display: none;"/><label for="star4" title="4 stars" style="cursor: pointer; width: 30px; height: 30px; margin: 0 2px; font-size: 20px; color: #FFD700;">★</label>
+              <input type="radio" id="star3half" name="rating" value="3.5" style="display: none;"/><label for="star3half" title="3.5 stars" style="cursor: pointer; width: 30px; height: 30px; margin: 0 2px; font-size: 20px; color: #FFD700;">★</label>
+              <input type="radio" id="star1" name="rating" value="1" style="display: none;"/><label for="star1" title="1 star" style="cursor: pointer; width: 30px; height: 30px; margin: 0 2px; font-size: 20px; color: #FFD700;">★</label>
+            </div>
+            <div class="social">
+              
+              <a href=""><i class="bi bi-bar-chart-steps"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="member" data-aos="zoom-in" data-aos-delay="100">
+          <div class="pic"><img src="{% static 'img/react_intermediate.jpg' %}" class="img-fluid" alt=""></div>
+          <div class="member-info">
+            <h4>REACT.JS - INTERMEDIATE</h4>
+            <span>JOSE PORTILLA</span>
+            <span></span>
+            <div class="rating" style="display: inline-block;">
+              <input type="radio" id="star5" name="rating" value="5" style="display: none;"/><label for="star5" title="5 stars" style="cursor: pointer; width: 30px; height: 30px; margin: 0 2px; font-size: 20px; color: #FFD700;">★</label>
+              <input type="radio" id="star4" name="rating" value="4" style="display: none;"/><label for="star4" title="4 stars" style="cursor: pointer; width: 30px; height: 30px; margin: 0 2px; font-size: 20px; color: #FFD700;">★</label>
+              <input type="radio" id="star1" name="rating" value="1" style="display: none;"/><label for="star1" title="1 star" style="cursor: pointer; width: 30px; height: 30px; margin: 0 2px; font-size: 20px; color: #FFD700;">★</label>
+            </div>
+            <div class="social">
+              <a href=""><i class="bi bi-bar-chart-steps"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="member" data-aos="zoom-in" data-aos-delay="100">
+          <div class="pic"><img src="{% static 'img/react_beginner.png' %}" class="img-fluid" alt=""></div>
+          <div class="member-info">
+            <h4>REACT.JS - BEGINNER</h4>
+            <span>CODE WITH HARRY</span>
+            <div class="rating" style="display: inline-block;">
+              <input type="radio" id="star5" name="rating" value="5" style="display: none;"/><label for="star5" title="5 stars" style="cursor: pointer; width: 30px; height: 30px; margin: 0 2px; font-size: 20px; color: #FFD700;">★</label>
+              <input type="radio" id="star4" name="rating" value="4" style="display: none;"/><label for="star4" title="4 stars" style="cursor: pointer; width: 30px; height: 30px; margin: 0 2px; font-size: 20px; color: #FFD700;">★</label>
+              <input type="radio" id="star3half" name="rating" value="3.5" style="display: none;"/><label for="star3half" title="3.5 stars" style="cursor: pointer; width: 30px; height: 30px; margin: 0 2px; font-size: 20px; color: #FFD700;">★</label>
+              <input type="radio" id="star1" name="rating" value="1" style="display: none;"/><label for="star1" title="1 star" style="cursor: pointer; width: 30px; height: 30px; margin: 0 2px; font-size: 20px; color: #FFD700;">★</label>
+            </div>
+            <div class="social">
+              <a href="./course.html"><i class="bi bi-bar-chart-steps"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section><!-- End Team Section -->
+<!-- ======= Team Section ======= -->
+
+
+
+<section  class="team">
+  <div class="container">
+
+    <div class="section-title" data-aos="fade-up">
+      <h2>OTHER COURSES</h2>
+      <p>WATCH ALL</p>
+    </div>
+
+    <div class="row" data-aos="fade-left">
+
+        {% for course in courses %}
+          <div class="col-lg-3 col-md-6">
+            <div class="member" data-aos="zoom-in" data-aos-delay="100">
+              <div class="pic"><img src="{{ course.course_poster.url }}" class="img-fluid" alt=""></div>
+              <div class="member-info">
+                <h4>{{ course.course_title }}</h4>
+                <span>{{ course.course_description| truncatewords:10 }}</span>
+                <div class="rating" style="display: inline-block;">
+                  <input type="radio" id="star5" name="rating" value="5" style="display: none;"/><label for="star5" title="5 stars" style="cursor: pointer; width: 30px; height: 30px; margin: 0 2px; font-size: 20px; color: #FFD700;">★</label>
+                  <input type="radio" id="star4" name="rating" value="4" style="display: none;"/><label for="star4" title="4 stars" style="cursor: pointer; width: 30px; height: 30px; margin: 0 2px; font-size: 20px; color: #FFD700;">★</label>
+                  <input type="radio" id="star3half" name="rating" value="3.5" style="display: none;"/><label for="star3half" title="3.5 stars" style="cursor: pointer; width: 30px; height: 30px; margin: 0 2px; font-size: 20px; color: #FFD700;">★</label>
+                  <input type="radio" id="star1" name="rating" value="1" style="display: none;"/><label for="star1" title="1 star" style="cursor: pointer; width: 30px; height: 30px; margin: 0 2px; font-size: 20px; color: #FFD700;">★</label>
+                </div>
+                <div class="social">
+                  <a href="{% url 'course_detail' course_id=course.course_id %}"><i class="bi bi-bar-chart-steps"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+    </div>
+
+
+
+  </div>
+</section><!-- End Team Section -->
+    
+    
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-6 col-md-6">
+            <div class="footer-info">
+              <h3>Adaptify</h3>
+              <p class="pb-3"><em>Where Every Learning Journey Adapts to You.</em></p>
+              <p>
+                A-108 Bandra - West <br>
+                Mumbai 400050, Mh<br><br>
+                <strong>Phone:</strong> +91 99X XXXXX XX<br>
+                <strong>Email:</strong> adaptify@Gmail.com<br>
+              </p>
+              <div class="social-links mt-3">
+                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Our Services</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Performance</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Courses</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Quiz</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Features</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Collaborate</a></li>
+            </ul>
+          </div>
+
+          
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="copyright">
+        Made By <strong><span>CapsLock🤍</span></strong> All Rights Reserved
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/bootslander-free-bootstrap-landing-page-template/ -->
+
+      </div>
+    </div>
+  </footer>
+  <!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'vendor/purecounter/purecounter_vanilla.js' %}"></script>
+  <script src="{% static 'vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'vendor/swiper/swiper-bundle.min.js' %}"></script>
+  <script src="{% static 'vendor/php-email-form/validate.js' %}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'js/main.js' %}"></script>
+
+</body>
+
+</html>

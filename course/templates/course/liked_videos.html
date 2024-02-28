@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liked Videos</title>
+</head>
+<body>
+    <h1>Liked Videos</h1>
+    <ul>
+        {% for liked_video in liked_videos %}
+            <li>{{ liked_video.video }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
